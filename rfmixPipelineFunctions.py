@@ -16,9 +16,15 @@ import subprocess
 
 ## 1. Fix for multiple ancestries
 
-def shapeItPhase(plink_name, genetic_map, known_haplotypes, max_threads=2):
+def shapeItPhase(plink_name, genetic_map, known_haplotypes, max_threads=2, duohmm):
 	out_pref = plink_name + "_shapeout"
-	if (known_haplotypes==""):
+	if (duohmm):
+		thiscall = " ".join(["--input-bed " + plink_name + ".bed " + plink_name + ".bim " + plink_name + ".fam",
+			"--input-map " + genetic_map, "--output-max " + out_pref, "-T " + str(max_threads), "--output-log " + plink_name + "_shapeitlog", "--duohmm"])
+		subprocess.call("./shapeit " + thiscall, shell=True)
+		#shape_log = subprocess.check_output(["shapeit" + thiscall])
+		subprocess.call("rm " + plink_name + "_shapeitlog*", shell=True)	
+	else if (known_haplotypes==""):
 		# run command normally
 		thiscall = " ".join(["--input-bed " + plink_name + ".bed " + plink_name + ".bim " + plink_name + ".fam",
 			"--input-map " + genetic_map, "--output-max " + out_pref, "-T " + str(max_threads), "--output-log " + plink_name + "_shapeitlog"])
@@ -26,7 +32,7 @@ def shapeItPhase(plink_name, genetic_map, known_haplotypes, max_threads=2):
 		#os.system("./shapeit " + thiscall)
 		subprocess.call("./shapeit " + thiscall, shell=True)
 		#shape_log = subprocess.check_output(["shapeit" + thiscall])
-		subprocess.call("rm " + plink_name + "_shapeitlog*", shell=True)		
+		subprocess.call("rm " + plink_name + "_shapeitlog*", shell=True)	
 	else:
 		# run command with reference haplotypes
 		ref_haps = known_haplotypes + ".haps"
