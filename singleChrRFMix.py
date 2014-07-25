@@ -40,13 +40,20 @@ if splitchrs == "False"
 else:
 	splitchrs = True
 
-remake_map = parse_param("remake_map")
+
+shapeitphase = parse_param("splitchrs")
+if shapeitphase == "False"
+	shapeitphase = False
+else:
+	shapeitphase = True
+
+remake_map = parse_param("remakemap")
 if remake_map == "False":
 	remake_map = False
 else:
 	remake_map = True
 
-rfmix_run = parse_param("rfmix_run")
+rfmix_run = parse_param("rfmixrun")
 if rfmix_run == "False":
 	rfmix_run = False
 else:
@@ -59,14 +66,13 @@ if shapeitphase:
 	phased_refs = []
 	for k in ref_plinkfiles:
 		phased_refs.append(shapeItPhase(k + "_chr" + chr, genetic_map, "", max_threads=max_threads))
-
-if rmfixrun:
 	rfmix_in = shapeItToRFMixMultiClass(phased_adm, phased_refs)
 
 if remake_map:
 	this_map = makeSNPMap(plinkbfile + ".bim", genetic_map)
 
-rfmix_out = runRFMixRephase(rfmix_in[0], rfmix_in[1], this_map, window_size, generations, em_iters, max_threads=max_threads)
+if rmfixrun:
+	rfmix_out = runRFMixRephase(rfmix_in[0], rfmix_in[1], this_map, window_size, generations, em_iters, max_threads=max_threads)
 
 # Write tempfile to communicate with main script 
 tempfile = open(logfolder + "/" + "out_chr" + chr, "w")

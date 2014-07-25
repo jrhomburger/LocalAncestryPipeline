@@ -39,10 +39,12 @@ The script also requires the shapeit executable file to be in the script directo
 * requality.sh - shell wrapper for requality.py 
 * requality.py - script the runs when changing quality or ancestry cutoffs
 
-### Parameter Descriptions and Codes ###
+## Parameter Descriptions and Codes ##
 
 *** Note that it is imperative the parameter names in the paramfile
 match those below exactly or the program will ignore the parameter ***
+
+### Main Parameters ###
 
 * plinkbfile: prefix of the plink bed file of admixed individuals (for instance, for 'lion.bed', use 'lion')
 * mixreference: prefix of the plink bed file of continental reference panel. specify this once for each continental panel.
@@ -52,6 +54,15 @@ So, if your European ref panel is first on mixreference than you subcontinental 
 specified on the pcamaskrefpanel. Suggestions for creative ways to link the two together are appreciated.***
 * geneticmap: location of the geneticmap files. Replace the individual chromosome number with NNN. for example, if
 we have the first chromosome map specified as path/geneticmapchr1b36.txt, then specify path/geneticmapchrNNNb36.txt
+* chrom: Give a list of chr x,y,z (no spaces) will run only those chromosome numbers
+* exclude_inds: file with each line a sampleID. These sample IDs will be excluded from PCAMask output
+* exclude_sites: file with each line a locus ID. These loci will be excluded from PCAMask output
+* append: appends an extension on the filtered PCAmask output files. Useful for telling different quality
+filters apart. 
+* logfolder: specifies a path for log files 
+
+### Program Filters ###
+
 * maxthreads: max number of threads for each instance of singleChrRFMix.py. Default is 1.
 * qsub: if 'True', it will use qsub. If anything else or omitted, will run locally.
 * windowsize: RfMix window size, in centimorgans, default is 0.2
@@ -59,19 +70,22 @@ we have the first chromosome map specified as path/geneticmapchr1b36.txt, then s
 * emiterations: RfMix EM iterations, default is 2
 * qualitycutoff: cutoff for quality when parsing for PCAmask - default is 0.95
 * ancestrycutoff: cutoff for removing individuals with low ancestral pop ancestry, default is 0.25
+
+### Run Type Filters ###
+
+** these filters determine which of the functions will run, default is true for all **
+
 * phasemix: If set to False, will not run phasing/RFMix portion of script. Default is True. 
 * runconcat: If set to False, the concatenation and filtering steps will not be run
 * requality: If set to True, neither the concatenation nor the phase/RFMix part of the script will run. 
 Instead, it will recreate the PCAmask input files with the specified quality parameters
-* chrom: Give a list of chr x,y,z (no spaces) will run only those chromosome numbers
-* exclude_inds: file with each line a sampleID. These sample IDs will be excluded from PCAMask output
-* exclude_sites: file with each line a locus ID. These loci will be excluded from PCAMask output
-* append: appends an extension on the filtered PCAmask output files. Useful for telling different quality
-filters apart. 
 * skip_anc: use in conjunction with requality == TRUE. If inputted, will skip recreating the PCAmask files for
 the given ancestry numbers. Note that you still will need the pcamaskrefpanel parameter specified for each ancestry -
 however skipped ancestries can be given any file path
-* logfolder: specifies a path for log files 
+* spltchrs: toggle for plink chromosome splitting step
+* shapeitphase: toggle for shapeit phasing
+* rfmixrun: toggle for rfmix run
+* remakemap: toggle for creating map/snp position files
 
 
 

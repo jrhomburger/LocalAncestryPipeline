@@ -46,6 +46,13 @@ else:
 
 ## First take as input the parameter file
 
+splitchrs = parse_param("splitchrs")
+if splitchrs == "False"
+	splitchrs = False
+else:
+	splitchrs = True
+
+
 run_phase_mix=phasemix
 
 chroms = parse_param("chroms", allparams)
@@ -72,10 +79,11 @@ ref_plinkfiles = parse_ref_files("mixreference", allparams)
 all_plink = ref_plinkfiles + [plinkbfile]
 #print all_plink
 if run_phase_mix:
-	for thisfile in all_plink:
-		for chrom in chroms:
-			out = thisfile + "_chr" + str(chrom)
-			os.system("plink --noweb --make-bed --bfile " + thisfile + " --chr " + str(chrom) + " --out " + out)
+	if splitchrs: # Split plink files into chromosomes
+		for thisfile in all_plink:
+			for chrom in chroms:
+				out = thisfile + "_chr" + str(chrom)
+				os.system("plink --noweb --make-bed --bfile " + thisfile + " --chr " + str(chrom) + " --out " + out)
 
 	## Run each chromosome file:
 	#print "there"
