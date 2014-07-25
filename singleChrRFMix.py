@@ -41,13 +41,8 @@ else:
 	splitchrs = True
 
 
-<<<<<<< HEAD
 shapeitphase = parse_param("shapeitphase")
 if shapeitphase == "False"
-=======
-shapeitphase = parse_param("splitchrs", allparams)
-if shapeitphase == "False":
->>>>>>> ffeb328182485728c9af294dadde7b3368356659
 	shapeitphase = False
 else:
 	shapeitphase = True
@@ -84,11 +79,7 @@ if shapeitphase:
 if remake_map:
 	this_map = makeSNPMap(plinkbfile + ".bim", genetic_map)
 
-<<<<<<< HEAD
-if rmfix_run:
-=======
 if rfmix_run:
->>>>>>> ffeb328182485728c9af294dadde7b3368356659
 	rfmix_out = runRFMixRephase(rfmix_in[0], rfmix_in[1], this_map, window_size, generations, em_iters, max_threads=max_threads)
 
 # Write tempfile to communicate with main script 
