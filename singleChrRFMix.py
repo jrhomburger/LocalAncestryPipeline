@@ -34,30 +34,36 @@ max_threads = parse_param("maxthreads", allparams)
 if max_threads == "":
 	max_threads = 1
 
-splitchrs = parse_param("splitchrs")
-if splitchrs == "False"
+splitchrs = parse_param("splitchrs", allparams)
+if splitchrs == "False":
 	splitchrs = False
 else:
 	splitchrs = True
 
 
+<<<<<<< HEAD
 shapeitphase = parse_param("shapeitphase")
 if shapeitphase == "False"
+=======
+shapeitphase = parse_param("splitchrs", allparams)
+if shapeitphase == "False":
+>>>>>>> ffeb328182485728c9af294dadde7b3368356659
 	shapeitphase = False
 else:
 	shapeitphase = True
 
-remake_map = parse_param("remakemap")
+remake_map = parse_param("remakemap", allparams)
 if remake_map == "False":
 	remake_map = False
 else:
 	remake_map = True
 
-rfmix_run = parse_param("rfmixrun")
+rfmix_run = parse_param("rfmixrun", allparams)
 if rfmix_run == "False":
 	rfmix_run = False
 else:
 	rfmix_run = True
+print rfmix_run
 
 duohmm = parse_param("duohmm")
 if duohmm == "True"
@@ -78,12 +84,16 @@ if shapeitphase:
 if remake_map:
 	this_map = makeSNPMap(plinkbfile + ".bim", genetic_map)
 
+<<<<<<< HEAD
 if rmfix_run:
+=======
+if rfmix_run:
+>>>>>>> ffeb328182485728c9af294dadde7b3368356659
 	rfmix_out = runRFMixRephase(rfmix_in[0], rfmix_in[1], this_map, window_size, generations, em_iters, max_threads=max_threads)
 
 # Write tempfile to communicate with main script 
 tempfile = open(logfolder + "/" + "out_chr" + chr, "w")
-tempfile.write(rfmix_out)
+tempfile.write("Finished")
 tempfile.write("\n")
 tempfile.close()
 

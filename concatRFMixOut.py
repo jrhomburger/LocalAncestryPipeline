@@ -53,7 +53,7 @@ logfolder = parse_param("logfolder", allparams)
 
 # def conRFMixAndMaskToBeagle(indfile_name, rephasedhaps_pref, em_iters, chroms):
 
-concatenated = conRFMixAndMaskToBeagle(plinkbfile_pref + ".fam", plinkbfile_pref, em_iters, chroms)
+concatenated = conRFMixAndMaskToBeagle(plinkbfile_pref + ".fam", plinkbfile_pref, em_iters, window_size, chroms)
 
 # def filterForPCAmask(beaglefile, vitin, winin, fbkin, pcamask_refpanel, quality_cutoff, ancestry_number, ancestry_cutoff):
 
