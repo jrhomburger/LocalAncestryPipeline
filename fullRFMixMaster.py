@@ -46,8 +46,8 @@ else:
 
 ## First take as input the parameter file
 
-splitchrs = parse_param("splitchrs")
-if splitchrs == "False"
+splitchrs = parse_param("splitchrs", allparams)
+if splitchrs == "False":
 	splitchrs = False
 else:
 	splitchrs = True
@@ -66,7 +66,7 @@ print chroms
 logfolder = parse_param("logfolder", allparams)
 if not os.path.exists(logfolder) and logfolder != "":
 	os.makedirs(logfolder)
-	logfolder = logfolder + "/"
+logfolder = logfolder + "/"
 
 
 ## Split into chromosomes:

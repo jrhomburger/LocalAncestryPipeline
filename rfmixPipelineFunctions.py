@@ -163,7 +163,7 @@ def makeSNPMap(snpfile, referencemap):
 				exit()
 
 			outfile.write( str(cmout) +"\n")
-			posfile.write( str(bimline[3]) + "\t" + str(cmount) + "\n")
+			posfile.write( str(bimline[3]) + "\t" + str(cmout) + "\n")
 			bimline = bimfile.readline().strip().split()
 			if len(bimline) == 0:
 				break		
@@ -232,7 +232,7 @@ def conRFMixAndMaskToBeagle(indfile_name, rephasedhaps_pref, em_iters, win_size,
 		inds.append(splits[1] + "_B")
 
 	allloci = []
-	outfilename = rephasedhaps_pref + "_w" + win_size + ".beagle"
+	outfilename = rephasedhaps_pref + "_w" + str(win_size) + ".beagle"
 	outfile = open(outfilename, "w")
 	outfile.write("I\tid\t" + "\t".join(inds) + "\n")
 	## Write genotype data out to file
