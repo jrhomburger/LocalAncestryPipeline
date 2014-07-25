@@ -1,0 +1,21 @@
+plinkbfile: /home/jhomburg/jhomburg_projects/PhaseMix0703/GWAS_NYU_merge0709/NYU_GWAS_admixed_panel
+
+mixreference: /home/jhomburg/jhomburg_projects/PhaseMix0701/GWAS_NYU_merge0709/NYU_GWAS_eur_panel
+mixreference: /home/jhomburg/jhomburg_projects/PhaseMix0701/GWAS_NYU_merge0709/NYU_GWAS_nat_panel
+mixreference: /home/jhomburg/jhomburg_projects/PhaseMix0701/GWAS_NYU_merge0709/NYU_GWAS_afr_panel
+
+pcamaskrefpanel: /home/jhomburg/jhomburg_projects/Subcontinental_references/EURthinnedPOPRES+Spain_setEx1.beagle
+pcamaskrefpanel: /home/jhomburg/jhomburg_projects/Subcontinental_references/ARL2.unmasked.NatAm_exclude8_exEur10.beagle
+
+logfolder: GWAS_NYU_log
+geneticmap: /home/jhomburg/jhomburg_projects/PhaseMix0701/GeneticMaps/genetic_map_chrNNN_b36.txt
+qsub: True
+maxthreads: 2
+windowsize: 0.2
+phasemix: True
+qualitycutoff: 0.95
+exclude_inds: ex_adm
+requality: False
+append: ex8
+skip_anc: 1
+
