@@ -42,7 +42,7 @@ else:
 
 
 shapeitphase = parse_param("shapeitphase")
-if shapeitphase == "False"
+if shapeitphase == "False":
 	shapeitphase = False
 else:
 	shapeitphase = True
