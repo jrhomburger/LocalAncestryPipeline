@@ -41,7 +41,7 @@ else:
 	splitchrs = True
 
 
-shapeitphase = parse_param("shapeitphase")
+shapeitphase = parse_param("shapeitphase", allparams)
 if shapeitphase == "False":
 	shapeitphase = False
 else:
@@ -60,26 +60,27 @@ else:
 	rfmix_run = True
 print rfmix_run
 
-duohmm = parse_param("duohmm")
-if duohmm == "True"
-	shapeitphase = True
+duohmm = parse_param("duohmm", allparams)
+if duohmm == "True":
+	duohmm = True
 else:
-	shapeitphase = False
-
+	duohmm = False
+print duohmm
 
 logfolder = parse_param("logfolder", allparams)
 
-if shapeitphase:
-	phased_adm = shapeItPhase(plinkbfile, genetic_map, "", max_threads=max_threads, duohmm)
+if True:
+	#print "here"
+	phased_adm = shapeItPhase(plinkbfile, genetic_map, "", max_threads=max_threads, duohmm=duohmm)
 	phased_refs = []
 	for k in ref_plinkfiles:
-		phased_refs.append(shapeItPhase(k + "_chr" + chr, genetic_map, "", max_threads=max_threads, duohmm))
+		phased_refs.append(shapeItPhase(k + "_chr" + chr, genetic_map, "", max_threads=max_threads, duohmm=duohmm))
 	rfmix_in = shapeItToRFMixMultiClass(phased_adm, phased_refs)
 
-if remake_map:
+if True:
 	this_map = makeSNPMap(plinkbfile + ".bim", genetic_map)
 
-if rfmix_run:
+if True:
 	rfmix_out = runRFMixRephase(rfmix_in[0], rfmix_in[1], this_map, window_size, generations, em_iters, max_threads=max_threads)
 
 # Write tempfile to communicate with main script 
