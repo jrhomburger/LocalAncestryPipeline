@@ -102,7 +102,6 @@ def shapeItToRFMixMultiClass(rfmix_admix, rfmix_ancestrals):
 	# Need to keep track of population numbers here
 	
 	hap_strings, alleles = readShapeItFile(hapfile)
-	print hap_strings
 	pop_nums = [0]*len(hap_strings[0]) # Add admixed ind codes to pop_numbers array
 	i = 1
 	for thisanc in rfmix_ancestrals:
@@ -157,7 +156,7 @@ def makeSNPMap(snpfile, referencemap):
 			diffpos = float(mapline[0]) - float(previousPos)
 			multi = (float(bimline[3]) - float(previousPos))/diffpos
 			cmout = multi*diffCM + float(previousCM)
-			if cmout < 0:
+			if cmout < 0: # this should not happen so if it does dump data and quit
 				print i
 				print cmout
 				print diffCM
