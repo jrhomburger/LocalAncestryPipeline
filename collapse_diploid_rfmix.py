@@ -58,6 +58,12 @@ fbk_threshold = options.fbkcut
 #load parameters and files
 admixed_pop = options.admixed_pop
 vit = options.vit
+full_ind_list = []
+full_ind = open(options.rfmix + '_chr' + str(chr) + "_shapeout.sample"
+full_ind.readline()
+full_ind.readline()
+for f in full_ind:
+	full_ind_list.append(full_ind.strip().split()[1])
 
 ind_info = open(options.ind_info)
 ind_list = []
@@ -92,7 +98,10 @@ def collapse_bed(current_ind):
 			fbk = open(options.rfmix +  '_chr' + str(chr) + '_shapeout.' + vit + '.ForwardBackward.txt')
 		snp_locations = open(options.snp_locations + '_chr' + str(chr) + '.markerpos')
 		snp_map = open(options.snp_locations + '_chr'+ str(chr) + '.snp_locations') #map of physical position -> genetic position
-		ind = ind_list.index(current_ind) #### This needs to be fixed to allow splitting
+		
+		
+		ind = full_ind_list.index(current_ind) #### This needs to be fixed to allow splitting
+        print ind
         
 		last_anc = None
 		last_plot_bound = None
