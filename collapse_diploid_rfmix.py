@@ -88,7 +88,7 @@ def collapse_bed(current_ind):
 	
 	bedfile_out = open(options.out + current_ind + '.bed', 'w')
 	counter = 0
-    for chr in chrs:
+	for chr in chrs:
 		print chr
 		rfmix = open(options.rfmix + '_chr' + str(chr) + '_shapeout.' + vit + '.Viterbi.txt') #1.rfmix.0.Viterbi.txt
 		if options.fbk is not None: #will need to change global proportion calculator, make new anc possibility (-9?), and color black
@@ -105,7 +105,7 @@ def collapse_bed(current_ind):
 		last_hapb_pos = None
 		last_switch = 0
 
-        for line in rfmix:
+		for line in rfmix:
 			myLine = line.strip().split()
 			my_pos = snp_locations.readline().strip()
 			my_map = snp_map.readline().strip().split()
@@ -180,16 +180,16 @@ def collapse_bed(current_ind):
 
 				last_plot_bound = current_plot_bound
 				last_anc = current_anc #might need to change this for plotting purposes
-        if current_hapa_anc == -9:
-			a_anc = "UNK"
-        else:
-        	a_anc = pop_labels[int(current_hapa_anc)-1]
-        if current_hapb_anc == -9:
-        	b_anc = "UNK"
-        else:
-        	b_anc = pop_labels[int(current_hapb_anc)-1]
-		bedfile_out.write(str(chr) + '\t' + last_hapb_pos + '\t' + current_hapb_pos + '\t' + a_anc + ":" + b_anc + '\t' + last_hapb_cm + '\t' + current_hapb_cm + '\n')
-		print [last_anc, chr, last_plot_bound, current_plot_bound, current_info]
+			if current_hapa_anc == -9:
+				a_anc = "UNK"
+			else:
+				a_anc = pop_labels[int(current_hapa_anc)-1]
+			if current_hapb_anc == -9:
+				b_anc = "UNK"
+			else:
+				b_anc = pop_labels[int(current_hapb_anc)-1]
+			bedfile_out.write(str(chr) + '\t' + last_hapb_pos + '\t' + current_hapb_pos + '\t' + a_anc + ":" + b_anc + '\t' + last_hapb_cm + '\t' + current_hapb_cm + '\n')
+			print [last_anc, chr, last_plot_bound, current_plot_bound, current_info]
         #plot_chromosomes(last_anc, chr, last_plot_bound, current_plot_bound, current_info, ax)
     
 	bedfile_out.close()
