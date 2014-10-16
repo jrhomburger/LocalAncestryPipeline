@@ -176,9 +176,10 @@ def collapse_bed(current_ind):
 							last_switch = current_hapb_pos
 						else:
 							bedfile_out.write(str(chr) + '\t' + last_hapa_pos + '\t' + current_hapa_pos + '\tUNK:UNK\t' + last_hapa_cm + '\t' + current_hapa_cm + '\n')
-
-				last_plot_bound = current_plot_bound
-				last_anc = current_anc #might need to change this for plotting purposes
+					last_plot_bound = current_plot_bound
+					last_anc = current_anc #might need to change this for plotting purposes		
+					
+							
 			if current_hapa_anc == -9:
 				a_anc = "UNK"
 			else:
