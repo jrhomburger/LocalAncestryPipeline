@@ -156,27 +156,26 @@ def collapse_bed(current_ind):
                     
                     ### this is the meat here
                     ### If you find a switchpoint
-					if (last_hapa_anc is not None and last_hapb_anc is not None) and (last_hapa_anc != current_hapa_anc 
-						or !last_hapb_anc != current_hapb_anc):
+					if (last_hapa_anc is not None and last_hapb_anc is not None) and (last_hapa_anc != current_hapa_anc or !last_hapb_anc != current_hapb_anc):
                     	###
-					if (last_hapa_anc != -9 and last_hapb_anc != -9) and last_hapa_anc != current_hapa_anc:
-						bedfile_out.write(str(chr) + '\t' + last_switch + '\t' + current_hapa_pos + '\t' + pop_labels[int(last_hapa_anc)-1] + ":" + pop_labels[int(last_hapb_anc)-1] + '\t' + last_hapa_cm + '\t' + current_hapa_cm + '\n')
-						last_switch = current_hapa_pos
-						last_hapa_anc = current_hapa_anc
-						last_hapa_pos = current_hapa_pos
-					else if (last_hapa_anc != -9 and last_hapb_anc != -9) and last_hapb_anc != current_hapb_anc:
-						bedfile_out.write(str(chr) + '\t' + last_switch + '\t' + current_hapb_pos + '\t' + pop_labels[int(last_hapa_anc)-1] + ":" + pop_labels[int(last_hapb_anc)-1] + '\t' + last_hapa_cm + '\t' + current_hapa_cm + '\n')
-						last_switch = current_hapb_pos
-						last_hapb_anc = current_hapb_anc
-						last_hapb_pos = current_hapb_pos
-					else if (last_hapa_anc != -9) and last_hapa_anc != current_hapa_anc:
-						bedfile_out.write(str(chr) + '\t' + last_switch + '\t' + current_hapa_pos + '\t' + pop_labels[int(last_hapa_anc)-1] + ":" + "UNK" + '\t' + last_hapa_cm + '\t' + current_hapa_cm + '\n')
-						last_switch = current_hapa_pos
-					else if (last_hapb_anc != -9) and last_hapb_anc != current_hapb_anc:
-						bedfile_out.write(str(chr) + '\t' + last_switch + '\t' + current_hapb_pos + '\t' + "UNK" + ":" + pop_labels[int(last_hapb_anc)-1] + '\t' + last_hapa_cm + '\t' + current_hapa_cm + '\n')
-						last_switch = current_hapb_pos
-					else:
-						bedfile_out.write(str(chr) + '\t' + last_hapa_pos + '\t' + current_hapa_pos + '\tUNK:UNK\t' + last_hapa_cm + '\t' + current_hapa_cm + '\n')
+						if (last_hapa_anc != -9 and last_hapb_anc != -9) and last_hapa_anc != current_hapa_anc:
+							bedfile_out.write(str(chr) + '\t' + last_switch + '\t' + current_hapa_pos + '\t' + pop_labels[int(last_hapa_anc)-1] + ":" + pop_labels[int(last_hapb_anc)-1] + '\t' + last_hapa_cm + '\t' + current_hapa_cm + '\n')
+							last_switch = current_hapa_pos
+							last_hapa_anc = current_hapa_anc
+							last_hapa_pos = current_hapa_pos
+						else if (last_hapa_anc != -9 and last_hapb_anc != -9) and last_hapb_anc != current_hapb_anc:
+							bedfile_out.write(str(chr) + '\t' + last_switch + '\t' + current_hapb_pos + '\t' + pop_labels[int(last_hapa_anc)-1] + ":" + pop_labels[int(last_hapb_anc)-1] + '\t' + last_hapa_cm + '\t' + current_hapa_cm + '\n')
+							last_switch = current_hapb_pos
+							last_hapb_anc = current_hapb_anc
+							last_hapb_pos = current_hapb_pos
+						else if (last_hapa_anc != -9) and last_hapa_anc != current_hapa_anc:
+							bedfile_out.write(str(chr) + '\t' + last_switch + '\t' + current_hapa_pos + '\t' + pop_labels[int(last_hapa_anc)-1] + ":" + "UNK" + '\t' + last_hapa_cm + '\t' + current_hapa_cm + '\n')
+							last_switch = current_hapa_pos
+						else if (last_hapb_anc != -9) and last_hapb_anc != current_hapb_anc:
+							bedfile_out.write(str(chr) + '\t' + last_switch + '\t' + current_hapb_pos + '\t' + "UNK" + ":" + pop_labels[int(last_hapb_anc)-1] + '\t' + last_hapa_cm + '\t' + current_hapa_cm + '\n')
+							last_switch = current_hapb_pos
+						else:
+							bedfile_out.write(str(chr) + '\t' + last_hapa_pos + '\t' + current_hapa_pos + '\tUNK:UNK\t' + last_hapa_cm + '\t' + current_hapa_cm + '\n')
 
 				last_plot_bound = current_plot_bound
 				last_anc = current_anc #might need to change this for plotting purposes
