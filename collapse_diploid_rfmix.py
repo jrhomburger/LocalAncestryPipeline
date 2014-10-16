@@ -65,11 +65,6 @@ for line in ind_info:
 
 print ind_list
 
-if options.ind is None:
-    current_ind = ind_list
-else:
-    current_ind = options.ind
-
 #note, incorporate admixture info here
 #anc_info = open('/home/armartin/sa_analysis/data/covariates/pheno_ancestry.txt')
 #anc_dict = {}
