@@ -156,7 +156,7 @@ def collapse_bed(current_ind):
                     
                     ### this is the meat here
                     ### If you find a switchpoint
-					if (last_hapa_anc is not None and last_hapb_anc is not None) and (last_hapa_anc != current_hapa_anc or !last_hapb_anc != current_hapb_anc):
+					if (last_hapa_anc is not None and last_hapb_anc is not None) and (last_hapa_anc != current_hapa_anc or last_hapb_anc != current_hapb_anc):
                     	###
 						if (last_hapa_anc != -9 and last_hapb_anc != -9) and last_hapa_anc != current_hapa_anc:
 							bedfile_out.write(str(chr) + '\t' + last_switch + '\t' + current_hapa_pos + '\t' + pop_labels[int(last_hapa_anc)-1] + ":" + pop_labels[int(last_hapb_anc)-1] + '\t' + last_hapa_cm + '\t' + current_hapa_cm + '\n')
