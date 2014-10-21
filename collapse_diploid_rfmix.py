@@ -59,12 +59,13 @@ fbk_threshold = options.fbkcut
 admixed_pop = options.admixed_pop
 vit = options.vit
 full_ind_list = []
-full_ind = open(options.rfmix + '_chr' + str(chr) + "_shapeout.sample"
+full_ind = open(options.rfmix + '_chr1' + "_shapeout.sample", "r")
 full_ind.readline()
 full_ind.readline()
 for f in full_ind:
-	full_ind_list.append(full_ind.strip().split()[1])
+	full_ind_list.append(f.strip().split()[1])
 
+print full_ind_list
 ind_info = open(options.ind_info)
 ind_list = []
 for line in ind_info:
@@ -101,7 +102,7 @@ def collapse_bed(current_ind):
 		
 		
 		ind = full_ind_list.index(current_ind) #### This needs to be fixed to allow splitting
-        print ind
+        	print ind
         
 		last_anc = None
 		last_plot_bound = None
@@ -151,25 +152,25 @@ def collapse_bed(current_ind):
 				last_hapb_cm = current_hapb_cm
 			if current_anc == last_anc:
 				continue
-			else:
-				print [last_anc, current_anc, chr, last_switch, last_plot_bound, current_plot_bound, current_info, [current_hapa_anc, current_hapb_anc]]
+			#else:
+			#	print [last_anc, current_anc, chr, last_switch, last_plot_bound, current_plot_bound, current_info, [current_hapa_anc, current_hapb_anc]]
 			
 
 			if last_plot_bound is not None:
                    # lai_proportions = track_lai_proportions(last_plot_bound, current_plot_bound, [current_plot_bound, last_anc[0], last_anc[1]], lai_proportions)
 					counter = counter + 2*(float(current_plot_bound) - float(last_plot_bound))
-                    
-                   	#		print last_hapa_anc
-			#		print last_hapb_anc
-			#		print current_hapa_anc
-			#		print current_hapb_anc 
-			#		print (last_hapa_anc is not None and last_hapb_anc is not None) and (last_hapa_anc != current_hapa_anc or last_hapb_anc != current_hapb_anc)
+                 #   
+                  # 			print last_hapa_anc
+		#			print last_hapb_anc
+		#			print current_hapa_anc
+		#			print current_hapb_anc 
+					#print (last_hapa_anc is not None and last_hapb_anc is not None) and (last_hapa_anc != current_hapa_anc or last_hapb_anc != current_hapb_anc)
                     ### this is the meat here
                     ### If you find a switchpoint
 					if (last_hapa_anc is not None and last_hapb_anc is not None) and (last_hapa_anc != current_hapa_anc or last_hapb_anc != current_hapb_anc):
                     	###			# Ancestries don't match	
 						if (last_hapa_anc != -9 and last_hapb_anc != -9) and last_hapa_anc != current_hapa_anc:
-			#				print "Case 1"
+		#					print "Case 1"
 							bedfile_out.write(str(chr) + '\t' + last_switch + '\t' + current_hapa_pos + '\t' + pop_labels[int(last_hapa_anc)-1] + ":" + pop_labels[int(last_hapb_anc)-1] + '\t' + last_hapa_cm + '\t' + current_hapa_cm + '\n')
 							last_switch = current_hapb_pos
                                                         last_hapb_anc = current_hapb_anc
@@ -180,7 +181,7 @@ def collapse_bed(current_ind):
                                                         last_hapb_cm = current_hapb_cm
 						elif (last_hapa_anc != -9 and last_hapb_anc != -9) and last_hapb_anc != current_hapb_anc:
 							
-			#				print "Case 2"
+		#					print "Case 2"
 							bedfile_out.write(str(chr) + '\t' + last_switch + '\t' + current_hapb_pos + '\t' + pop_labels[int(last_hapa_anc)-1] + ":" + pop_labels[int(last_hapb_anc)-1] + '\t' + last_hapa_cm + '\t' + current_hapa_cm + '\n')
 							last_switch = current_hapb_pos
                                                         last_hapb_anc = current_hapb_anc
@@ -191,7 +192,7 @@ def collapse_bed(current_ind):
                                                         last_hapb_cm = current_hapb_cm
 						elif (last_hapa_anc != -9) and last_hapa_anc != current_hapa_anc:
 						#elif last_hapa_anc != current_hapa_anc:
-			#				print "Case 3"
+		#					print "Case 3"
 							bedfile_out.write(str(chr) + '\t' + last_switch + '\t' + current_hapa_pos + '\t' + pop_labels[int(last_hapa_anc)-1] + ":" + "UNK" + '\t' + last_hapa_cm + '\t' + current_hapa_cm + '\n')
 							last_switch = current_hapb_pos
                                                         last_hapb_anc = current_hapb_anc
@@ -203,7 +204,7 @@ def collapse_bed(current_ind):
 						
 						elif (last_hapb_anc != -9) and last_hapb_anc != current_hapb_anc:
 						#elif last_hapb_anc != current_hapb_anc:
-			#				print "Case 4"
+		#					print "Case 4"
 							bedfile_out.write(str(chr) + '\t' + last_switch + '\t' + current_hapb_pos + '\t' + "UNK" + ":" + pop_labels[int(last_hapb_anc)-1] + '\t' + last_hapa_cm + '\t' + current_hapa_cm + '\n')
 							last_switch = current_hapb_pos
                                                         last_hapb_anc = current_hapb_anc
@@ -213,12 +214,12 @@ def collapse_bed(current_ind):
                                                         last_hapa_cm = current_hapa_cm
                                                         last_hapb_cm = current_hapb_cm
 						else:
-			#				print "Case 5"
-							if current_hapa_anc == -9:
+		#					print "Case 5"
+							if last_hapa_anc == -9:
                                 				a_anc = "UNK"
                         				else:
                                 				a_anc = pop_labels[int(current_hapa_anc)-1]
-                        				if current_hapb_anc == -9:
+                        				if last_hapb_anc == -9:
                                 				b_anc = "UNK"
                         				else:
                                 				b_anc = pop_labels[int(current_hapb_anc)-1]
@@ -232,7 +233,8 @@ def collapse_bed(current_ind):
 							last_hapb_cm = current_hapb_cm                                                      
 			last_anc = current_anc #might need to change this for plotting purposes		
 			last_plot_bound = current_plot_bound			
-			#bedfile_out.flush()					
+			
+		bedfile_out.flush()					
 		if current_hapa_anc == -9:
 			a_anc = "UNK"
 		else:
@@ -242,7 +244,7 @@ def collapse_bed(current_ind):
 		else:
 			b_anc = pop_labels[int(current_hapb_anc)-1]
 		bedfile_out.write(str(chr) + '\t' + last_hapb_pos + '\t' + current_hapb_pos + '\t' + a_anc + ":" + b_anc + '\t' + last_hapb_cm + '\t' + current_hapb_cm + '\n')
-		print [last_anc, current_anc, last_switch, chr, last_plot_bound, current_plot_bound, current_info]
+		#print [last_anc, current_anc, last_switch, chr, last_plot_bound, current_plot_bound, current_info]
         #plot_chromosomes(last_anc, chr, last_plot_bound, current_plot_bound, current_info, ax)
     
 	bedfile_out.close()
