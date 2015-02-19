@@ -101,9 +101,10 @@ def collapse_bed(current_ind):
 		snp_map = open(options.snp_locations + '_chr'+ str(chr) + '.snp_locations') #map of physical position -> genetic position
 		
 		
-		ind = full_ind_list.index(current_ind) #### This needs to be fixed to allow splitting
+		ind = full_ind_list.index(current_ind)
         	print ind
-        
+		print full_ind_list[ind]
+		#break        
 		last_anc = None
 		last_plot_bound = None
 		last_hapa_anc = 0

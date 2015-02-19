@@ -159,7 +159,7 @@ def main(current_ind, ind):
     
     #admixed_pop
     lai_proportions = [0,0,0] #changed this to only have 3-way ancestry (admixed).
-    
+    lai_proportions = [0,0,0,0] # added 4-pop possibility 
     counter = 0
     for chr in chrs:
         print chr

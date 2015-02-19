@@ -69,7 +69,7 @@ print duohmm
 
 logfolder = parse_param("logfolder", allparams)
 
-if True:
+if shapeitphase:
 	#print "here"
 	phased_adm = shapeItPhase(plinkbfile, genetic_map, "", max_threads=max_threads, duohmm=duohmm)
 	phased_refs = []
@@ -77,10 +77,10 @@ if True:
 		phased_refs.append(shapeItPhase(k + "_chr" + chr, genetic_map, "", max_threads=max_threads, duohmm=duohmm))
 	rfmix_in = shapeItToRFMixMultiClass(phased_adm, phased_refs)
 
-if True:
+if remake_map:
 	this_map = makeSNPMap(plinkbfile + ".bim", genetic_map)
 
-if True:
+if rfmix_run:
 	rfmix_out = runRFMixRephase(rfmix_in[0], rfmix_in[1], this_map, window_size, generations, em_iters, max_threads=max_threads)
 
 # Write tempfile to communicate with main script 
