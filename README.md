@@ -82,7 +82,7 @@ Instead, it will recreate the PCAmask input files with the specified quality par
 * skip_anc: use in conjunction with requality == TRUE. If inputted, will skip recreating the PCAmask files for
 the given ancestry numbers. Note that you still will need the pcamaskrefpanel parameter specified for each ancestry -
 however skipped ancestries can be given any file path
-* spltchrs: toggle for plink chromosome splitting step
+* splitchrs: toggle for plink chromosome splitting step
 * shapeitphase: toggle for shapeit phasing
 * rfmixrun: toggle for rfmix run
 * remakemap: toggle for creating map/snp position files
