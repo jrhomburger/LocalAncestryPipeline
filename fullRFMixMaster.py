@@ -29,6 +29,13 @@ if (phasemix == "False"):
 else:
 	phasemix = True
 
+queue = parse_param("queue", allparams)
+if (queue == "normal"):
+        queue = "normal"
+else:
+        queue = "extended"
+
+
 
 run_concat = parse_param("runconcat", allparams)
 if (run_concat == "False"):
@@ -93,8 +100,13 @@ if run_phase_mix:
 			name = "mix" + str(chrom)
 			print("qsub -V -cwd -v par=" + sys.argv[1] + ",chr=" + str(chrom) + " -o " + logfile + " -e " + logfile +
 				" -N " + name + " -pe shm " + max_threads + " singleChrRFMix.sh")
-			os.system("qsub -V -cwd -v par=" + sys.argv[1] + ",chr=" + str(chrom) + " -o " + logfile + " -e " + logfile +
-				" -N " + name + " -q extended -pe shm " + max_threads + " singleChrRFMix.sh")
+			
+			if (queue == "extended"):
+				os.system("qsub -V -cwd -v par=" + sys.argv[1] + ",chr=" + str(chrom) + " -o " + logfile + " -e " + logfile +
+				" -N " + name + " -q "+ queue+ " -pe shm " + max_threads + " singleChrRFMix.sh")
+			else:
+				os.system("qsub -V -cwd -v par=" + sys.argv[1] + ",chr=" + str(chrom) + " -o " + logfile + " -e " + logfile +
+                                " -N " + name + " -pe shm " + max_threads + " singleChrRFMix.sh")
 		else:
 			os.system("./singleChrRFMix.sh " + sys.argv[1] + " " + str(chrom))
 
