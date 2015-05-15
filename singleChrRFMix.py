@@ -75,8 +75,16 @@ if shapeitphase:
 	phased_refs = []
 	for k in ref_plinkfiles:
 		phased_refs.append(shapeItPhase(k + "_chr" + chr, genetic_map, "", max_threads=max_threads, duohmm=duohmm))
+		
+		
+	
 	rfmix_in = shapeItToRFMixMultiClass(phased_adm, phased_refs)
+else:
+	phased_adm = plinkbfile + "_shapeout"
+	rfmix_in = [phased_adm + ".alleles", phased_adm + ".classes", phased_adm + ".amaps"]  
 
+
+	
 if remake_map:
 	this_map = makeSNPMap(plinkbfile + ".bim", genetic_map)
 

@@ -41,8 +41,8 @@ The script also requires the shapeit executable file to be in the script directo
 
 ## Parameter Descriptions and Codes ##
 
-*** Note that it is imperative the parameter names in the paramfile
-match those below exactly or the program will ignore the parameter ***
+__Note that it is imperative the parameter names in the paramfile
+match those below exactly or the program will ignore the parameter__
 
 ### Main Parameters ###
 
@@ -70,10 +70,11 @@ filters apart.
 * emiterations: RfMix EM iterations, default is 2
 * qualitycutoff: cutoff for quality when parsing for PCAmask - default is 0.95
 * ancestrycutoff: cutoff for removing individuals with low ancestral pop ancestry, default is 0.25
+* duohmm: Run shapeit with the duohmm parameter. For complex pedigrees. 
 
 ### Run Type Filters ###
 
-** these filters determine which of the functions will run, default is true for all **
+__these filters determine which of the functions will run, default is true for all__
 
 * phasemix: If set to False, will not run phasing/RFMix portion of script. Default is True. 
 * runconcat: If set to False, the concatenation and filtering steps will not be run
@@ -82,10 +83,14 @@ Instead, it will recreate the PCAmask input files with the specified quality par
 * skip_anc: use in conjunction with requality == TRUE. If inputted, will skip recreating the PCAmask files for
 the given ancestry numbers. Note that you still will need the pcamaskrefpanel parameter specified for each ancestry -
 however skipped ancestries can be given any file path
-* spltchrs: toggle for plink chromosome splitting step
+* splitchrs: toggle for plink chromosome splitting step
 * shapeitphase: toggle for shapeit phasing
 * rfmixrun: toggle for rfmix run
 * remakemap: toggle for creating map/snp position files
 
+### Common Issues ###
 
+* ShapeIt phasing will not run if any of the following are true: 
+any SNP has all missing data within a group or any individual has all missing data at a chromosome. 
+This is the most common cause of the pipeline failing.
 
