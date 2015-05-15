@@ -1,2 +1,4 @@
-python collapse_ancestry.py --rfmix NYU_GWAS_admixed_panel --snp_locations NYU_GWAS_admixed_panel --ind_info NYU_GWAS_admixed.indinfo --pop_labels EUR,NAT,AFR --out LAI_out_nofbk/ --vit 2 --fbk NYU_GWAS_admixed_panel --fbkcut 0
+alias python='/srv/gs1/software/python/2.7.6/bin/python'
+
+python collapse_ancestry.py --rfmix GN1k_021215_ASubset_admixed --snp_locations GN1k_021215_ASubset_admixed --ind_info GN1k_021215_ASubset_admixed.indinfo --pop_labels EUR,NAT,AFR --out LAI_out_nofbk/ --vit 2 --fbk GN1k_021215_ASubset_admixed --fbkcut 0
 

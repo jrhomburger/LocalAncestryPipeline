@@ -292,7 +292,8 @@ def main(current_ind, ind):
     ax.yaxis.set_ticks_position('none')
 
     fig.savefig(options.out + current_ind + '.png', transparent=True)
-    fig.close()
+    
+    plt.close(fig)
     return(lai_proportions)
 
 if __name__ == '__main__':
