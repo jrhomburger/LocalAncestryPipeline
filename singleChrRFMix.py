@@ -67,6 +67,17 @@ else:
 	duohmm = False
 print duohmm
 
+trioPhase = parse_param("triophase", allparams)
+if trioPhase == "True":
+	trioPhase = True
+else:
+	trioPhase = False
+if (trioPhase):
+	print "Using trio phase RFMix"
+else:
+	print "Using pop phase RFMix"
+
+
 logfolder = parse_param("logfolder", allparams)
 
 if shapeitphase:
@@ -74,10 +85,8 @@ if shapeitphase:
 	phased_adm = shapeItPhase(plinkbfile, genetic_map, "", max_threads=max_threads, duohmm=duohmm)
 	phased_refs = []
 	for k in ref_plinkfiles:
-		phased_refs.append(shapeItPhase(k + "_chr" + chr, genetic_map, "", max_threads=max_threads, duohmm=duohmm))
+		phased_refs.append(shapeItPhase(k + "_chr" + chr, genetic_map, "", max_threads=max_threads, duohmm=duohmm, trioPhase=trioPhase))
 		
-		
-	
 	rfmix_in = shapeItToRFMixMultiClass(phased_adm, phased_refs)
 else:
 	phased_adm = plinkbfile + "_shapeout"

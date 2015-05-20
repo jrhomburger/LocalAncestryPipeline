@@ -191,7 +191,7 @@ def makeSNPMap(snpfile, referencemap):
 	return(outfile.name)
 
 ## Function that runs RFMix to rephase alleles. Returns name of rephased alleles output
-def runRFMixRephase(hapfile, classfile, snp_locations, window_size, generations, em_iters = 2, max_threads=2):
+def runRFMixRephase(hapfile, classfile, snp_locations, window_size, generations, em_iters = 2, max_threads=2, trioPhase=False):
 	"""
 	This function takes as input the names of the concatenated haplotype file and the classfile
 	It returns the name of the rephased allele file. 
@@ -199,9 +199,14 @@ def runRFMixRephase(hapfile, classfile, snp_locations, window_size, generations,
 	"""
 	out_pref = re.sub(r".alleles", "", hapfile)
 	os.chdir("RFMix") # RFMix doesn't like running outside its directory
-	rfmix_call = " ".join(["python RunRFMix.py PopPhased", hapfile,
-		classfile, snp_locations, "--num-threads " + str(max_threads), 
-		"-e " + str(em_iters), "-o " + out_pref, "--forward-backward"  ])
+	if (trioPhase):
+		rfmix_call = " ".join(["python RunRFMix.py TrioPhased", hapfile,
+			classfile, snp_locations, "--num-threads " + str(max_threads), 
+			"-e " + str(em_iters), "-o " + out_pref, "--forward-backward"  ])
+	else:
+		rfmix_call = " ".join(["python RunRFMix.py PopPhased", hapfile,
+			classfile, snp_locations, "--num-threads " + str(max_threads), 
+			"-e " + str(em_iters), "-o " + out_pref, "--forward-backward"  ])
 	print rfmix_call
 	subprocess.call(rfmix_call, shell=True)
 	os.chdir("../")
