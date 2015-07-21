@@ -385,6 +385,7 @@ def filterForPCAmask(beaglefile, vitin, winin, fbkin, num_refs, pcamask_refpanel
 
 	in_anc = set(ancmarkers.keys())
 	both = in_anc & in_windows
+	print "Found " + str(len(both)) + " overlapping markers for ancestry " + str(ancestry_number)
 	index_to_snp = []
 	i=0
 	k=0
@@ -419,7 +420,7 @@ def filterForPCAmask(beaglefile, vitin, winin, fbkin, num_refs, pcamask_refpanel
 		i+=1
 
 	print ( "I found and corrected " + str(k) + " strand issues.")
-
+	
 	print("Writing filtered viterbi file...")
 	vitout = open(vitoutname, "w")
 	viterbifile = open(vitfilename, "r")
@@ -476,6 +477,13 @@ def filterForPCAmask(beaglefile, vitin, winin, fbkin, num_refs, pcamask_refpanel
 	sum = 0
 	for d in inds_to_keep:
 		sum += d
+		
+	if (sum == 0):
+		print block_cutoff
+		print inds_to_keep
+		print counts
+		print len(output_calls)
+	
 	inds_removed = len(inds_to_keep) - sum
 	print ( str(inds_removed) + " individuals of " + str(len(inds_to_keep) -2) + " were removed for low numbers of ancestral regions")
 	print ( str(miss) + " blocks out of " + str(totalblocks) + " were masked due to low quality.")
