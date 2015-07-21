@@ -460,6 +460,9 @@ def filterForPCAmask(beaglefile, vitin, winin, fbkin, num_refs, pcamask_refpanel
 					totalblocks+=1
 		
 		counts = output_calls.count(target_pop)
+		if (len(output_calls) < 1):
+			inds_to_keep.append(0)
+			continue
 		if (float(counts)/float(len(output_calls))) < block_cutoff or id in inds_to_exclude:
 			inds_to_keep.append(0)
 		else: # write to output file and save position of individual to keep
