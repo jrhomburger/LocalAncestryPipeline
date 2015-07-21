@@ -85,7 +85,7 @@ if shapeitphase:
 	phased_adm = shapeItPhase(plinkbfile, genetic_map, "", max_threads=max_threads, duohmm=duohmm)
 	phased_refs = []
 	for k in ref_plinkfiles:
-		phased_refs.append(shapeItPhase(k + "_chr" + chr, genetic_map, "", max_threads=max_threads, duohmm=duohmm, trioPhase=trioPhase))
+		phased_refs.append(shapeItPhase(k + "_chr" + chr, genetic_map, "", max_threads=max_threads, duohmm=duohmm))
 		
 	rfmix_in = shapeItToRFMixMultiClass(phased_adm, phased_refs)
 else:
@@ -98,7 +98,7 @@ if remake_map:
 	this_map = makeSNPMap(plinkbfile + ".bim", genetic_map)
 
 if rfmix_run:
-	rfmix_out = runRFMixRephase(rfmix_in[0], rfmix_in[1], this_map, window_size, generations, em_iters, max_threads=max_threads)
+	rfmix_out = runRFMixRephase(rfmix_in[0], rfmix_in[1], this_map, window_size, generations, em_iters, max_threads=max_threads, trioPhase=trioPhase)
 
 # Write tempfile to communicate with main script 
 tempfile = open(logfolder + "/" + "out_chr" + chr, "w")

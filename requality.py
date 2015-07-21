@@ -57,7 +57,7 @@ append = parse_param("append", allparams)
 num_refs = len(parse_ref_files("mixreference", allparams))
 #concatenated = conRFMixAndMaskToBeagle(plinkbfile_pref + ".fam", plinkbfile_pref, em_iters, chroms)
 
-beagleoutfilename = plinkbfile_pref + ".beagle"
+beagleoutfilename = plinkbfile_pref + "_w" + str(window_size) + ".beagle"
 ## Write genotype data out to file
 
 vitout = plinkbfile_pref + ".vit"

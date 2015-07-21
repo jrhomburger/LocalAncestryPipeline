@@ -35,7 +35,11 @@ if (queue == "normal"):
 else:
         queue = "extended"
 
-
+requal_mem = parse_param("requal_mem", allparams)
+if ( requal_mem == ""):
+	requal_mem = "10G"
+else:
+	requal_mem = requal_mem + "G"
 
 run_concat = parse_param("runconcat", allparams)
 if (run_concat == "False"):
@@ -148,6 +152,6 @@ if requality:
 	if qsub:
 		logfile = logfolder + "requality"
 		os.system("qsub -V -cwd -v par=" + sys.argv[1] + " -o " + logfile + " -e " + logfile +
-				" -N requality -l h_vmem=10G" + " requality.sh")
+				" -N requality -l h_vmem=" +requal_mem+" requality.sh")
 	else:
 		os.system("./requality.sh " + sys.argv[1])
