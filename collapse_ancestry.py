@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import pylab
 from matplotlib.path import Path
 import matplotlib.patches as patches
-import brewer2mpl
+#import brewer2mpl
 from itertools import izip_longest
 
 print 'Libs loaded [' + datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') + ']'
@@ -124,8 +124,9 @@ def plot_chromosomes(last_anc, chr, last_plot_bound, current_plot_bound, current
             Path.CLOSEPOLY,
         ]
         
-        bmap = brewer2mpl.get_map('Set1', 'qualitative', 4)
-        colors=bmap.mpl_colors
+        #bmap = brewer2mpl.get_map('Set1', 'qualitative', 4)
+        #colors=bmap.mpl_colors
+        colors=[(0.8941176470588236, 0.10196078431372549, 0.10980392156862745), (0.21568627450980393, 0.49411764705882355, 0.7215686274509804), (0.30196078431372547, 0.6862745098039216, 0.2901960784313726), (0.596078431372549, 0.3058823529411765, 0.6392156862745098)]
         colors.append((0,0,0))
         
         path = Path(verts1, codes)
@@ -260,9 +261,9 @@ def main(current_ind, ind):
     hap_a.close()
     hap_b.close()
     
-    bmap = brewer2mpl.get_map('Set1', 'qualitative', 4)
-    colors=bmap.mpl_colors
-    
+    #bmap = brewer2mpl.get_map('Set1', 'qualitative', 4)
+    #colors=bmap.mpl_colors
+    colors = [(0.8941176470588236, 0.10196078431372549, 0.10980392156862745), (0.21568627450980393, 0.49411764705882355, 0.7215686274509804), (0.30196078431372547, 0.6862745098039216, 0.2901960784313726), (0.596078431372549, 0.3058823529411765, 0.6392156862745098)] 
     p1 = plt.Rectangle((0, 0), 1, 1, color=colors[0])
     p2 = plt.Rectangle((0, 0), 1, 1, color=colors[1])
     p3 = plt.Rectangle((0, 0), 1, 1, color='k')
