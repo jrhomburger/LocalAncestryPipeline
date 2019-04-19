@@ -1,7 +1,7 @@
 # README for Local Ancestry Pipeline #
 
 By Julian Homburger
-jhomburg@stanford.edu
+jhomburg@alumni.stanford.edu
 
 ### Local Ancestry Pipeline ###
 
